@@ -1,3 +1,3 @@
 <template>
-  <h1>Hello, I'm in App.vue</h1>
+  <h1 class="m-8 text-6xl text-center">Hello, I'm in App.vue</h1>
 </template>
