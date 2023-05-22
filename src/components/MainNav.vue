@@ -5,7 +5,7 @@
         <a :href="url" class="flex h-full items-center text-xl">{{ company }}</a>
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
-            <li class="ml-9 h-full" v-for="menuItem in menuItems">
+            <li class="ml-9 h-full" v-for="menuItem in menuItems" :key="menuItem">
               <a href="" class="flex h-full items-center py-2.5">{{ menuItem }}</a>
             </li>
           </ul>
