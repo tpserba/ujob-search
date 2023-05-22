@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest'
 import { evenOrOdd, multiply } from '@/playground.js'
 
 describe('basic math', () => {
