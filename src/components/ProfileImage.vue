@@ -1,5 +1,5 @@
 <template>
-  <img :src="image" class="h-8 w-8 rounded-3xl object-contain" alt="Image of the user" />
+  <img :src="image" class="h-8 w-8 rounded-3xl object-contain" alt="User profile image" />
 </template>
 
 <script>

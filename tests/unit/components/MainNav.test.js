@@ -18,4 +18,14 @@ describe('MainNavm', () => {
 
     expect(navMenuTexts).toEqual(['Teams', 'Locations', 'Life at Corp', 'Students', 'Jobs'])
   })
+
+  describe('When the user logs in', () => {
+    it('Displays user profile picture', () => {
+      render(MainNav)
+      const profileImg = screen.queryByRole('img', {
+        name: /user profile image/i
+      })
+      expect(profileImg).not.toBeInTheDocument()
+    })
+  })
 })
