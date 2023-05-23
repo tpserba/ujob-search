@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import nextElementInList from '@/utils/NextElementInList.js'
+
 export default {
   name: 'Headline',
   data() {
@@ -20,7 +22,7 @@ export default {
   computed: {
     actionClasses() {
       return {
-        [this.action.toLocaleLowerCase]: true
+        [this.action.toLocaleLowerCase()]: true
       }
     }
   },
@@ -33,7 +35,8 @@ export default {
   methods: {
     changeTitle() {
       this.interval = setInterval(() => {
-        this.action = nextAction
+        const actions = ['Build', 'Create', 'Design', 'Code']
+        this.action = nextElementInList(actions, this.action)
       }, 3000)
     }
   }
