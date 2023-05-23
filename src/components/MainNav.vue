@@ -11,7 +11,7 @@
           </ul>
         </nav>
         <div class="h-ful ml-auto flex items-center">
-          <ActionButton />
+          <ActionButton v-if="!isLoggedIn" />
           <ProfileImage />
         </div>
       </div>
@@ -32,7 +32,8 @@ export default {
     return {
       company: 'Corp Careers',
       url: 'https://careers.google.com',
-      menuItems: ['Teams', 'Locations', 'Life at Corp', 'Students', 'Jobs']
+      menuItems: ['Teams', 'Locations', 'Life at Corp', 'Students', 'Jobs'],
+      isLoggedIn: false
     }
   }
 }
