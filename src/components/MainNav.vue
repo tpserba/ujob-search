@@ -39,6 +39,14 @@ export default {
       isLoggedIn: false
     }
   },
+  computed: {
+    headerHeightClass() {
+      return {
+        'h-16': !this.isLoggedIn,
+        'h-32': this.isLoggedIn
+      }
+    }
+  },
   methods: {
     loginUser() {
       this.isLoggedIn = true
