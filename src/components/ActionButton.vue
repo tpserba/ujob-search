@@ -16,7 +16,8 @@ export default {
   computed: {
     btnClass() {
       return {
-        primary: this.primary
+        primary: this.primary,
+        secondary: !this.primary
       }
     }
   }
@@ -33,5 +34,6 @@ button {
 }
 
 .secondary {
+  @apply bg-transparent text-brand-blue-1 hover:bg-brand-blue-2 hover:text-white;
 }
 </style>
