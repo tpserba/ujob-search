@@ -12,7 +12,7 @@
         </nav>
         <div class="h-ful ml-auto flex items-center">
           <ProfileImage v-if="isLoggedIn" />
-          <ActionButton v-else />
+          <ActionButton v-else @click="loginUser" />
         </div>
       </div>
     </div>
@@ -34,6 +34,11 @@ export default {
       url: 'https://careers.google.com',
       menuItems: ['Teams', 'Locations', 'Life at Corp', 'Students', 'Jobs'],
       isLoggedIn: false
+    }
+  },
+  methods: {
+    loginUser() {
+      this.isLoggedIn = true
     }
   }
 }
