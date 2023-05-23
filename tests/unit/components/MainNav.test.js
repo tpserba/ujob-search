@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/vue'
-//import matchers from '@testing-library/jest-dom/matchers'
+import userEvent from '@testing-library/user-event'
 
 import MainNav from '@/components/MainNav.vue'
 describe('MainNavm', () => {
@@ -20,12 +20,23 @@ describe('MainNavm', () => {
   })
 
   describe('When the user logs in', () => {
-    it('Displays user profile picture', () => {
+    it('Displays user profile picture', async () => {
       render(MainNav)
-      const profileImg = screen.queryByRole('img', {
+      // Aria role is img
+      let profileImg = screen.queryByRole('img', {
         name: /user profile image/i
       })
       expect(profileImg).not.toBeInTheDocument()
+
+      // Aria role is button
+      const loginBtn = screen.getByRole('button', {
+        name: /Sign in/i
+      })
+      await userEvent.click(loginBtn)
+      profileImg = screen.getByRole('img', {
+        name: /user profile image/i
+      })
+      expect(profileImg).toBeInTheDocument()
     })
   })
 })
