@@ -33,10 +33,6 @@ export default {
   methods: {
     changeTitle() {
       this.interval = setInterval(() => {
-        const actions = ['Build', 'Create', 'Design', 'Code']
-        const currentActionIdex = actions.indexOf(this.action)
-        const nextActionIndex = (currentActionIdex + 1) % 4
-        const nextAction = actions[nextActionIndex]
         this.action = nextAction
       }, 3000)
     }
