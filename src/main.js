@@ -10,4 +10,4 @@ import App from './App.vue'
 
 library.add(faSearch)
 
-createApp(App).mount('#app')
+createApp(App).component('FontAwesomeIcon', FontAwesomeIcon).mount('#app')
