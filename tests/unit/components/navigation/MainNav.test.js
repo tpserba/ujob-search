@@ -1,16 +1,29 @@
 import { render, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
 import MainNav from '@/components/navigation/MainNav.vue'
+import { RouterLinkStub } from '@vue/test-utils'
 
 describe('MainNavm', () => {
+  const renderMainNav = () => {
+    render(MainNav, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true,
+          RouterLink: RouterLinkStub
+        }
+      }
+    })
+  }
   it('Displays company name', () => {
-    render(MainNav)
+    //render(MainNav)
+    renderMainNav()
     const companyName = screen.getByText('Corp Careers')
     expect(companyName).toBeInTheDocument()
   })
 
   it('Displays menu items for navigation', () => {
-    render(MainNav)
+    //render(MainNav)
+    renderMainNav()
     const navItems = screen.getAllByRole('listitem')
     console.log(navItems)
     const navMenuTexts = navItems.map((item) => item.textContent)
@@ -21,7 +34,8 @@ describe('MainNavm', () => {
 
   describe('When the user logs in', () => {
     it('Displays user profile picture', async () => {
-      render(MainNav)
+      //render(MainNav)
+      renderMainNav()
       // Aria role is img
       let profileImg = screen.queryByRole('img', {
         name: /user profile image/i
