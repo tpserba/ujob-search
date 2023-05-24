@@ -13,6 +13,7 @@
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png"
           />
         </div>
+
         <div class="col-span-1 col-start-12"></div>
       </div>
     </section>

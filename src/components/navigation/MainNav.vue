@@ -22,8 +22,8 @@
 
 <script>
 import ActionButton from '@/components/ActionButton.vue'
-import ProfileImage from '@/components/ProfileImage.vue'
-import SubNav from '@/components/SubNav.vue'
+import ProfileImage from '@/components/navigation/ProfileImage.vue'
+import SubNav from '@/components/navigation/SubNav.vue'
 export default {
   name: 'MainNav',
   components: {
