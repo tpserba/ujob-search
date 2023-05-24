@@ -17,7 +17,8 @@
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
-    "vue": "^3.3.2"
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
