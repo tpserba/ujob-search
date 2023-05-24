@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <RouterLink to="/">Home</RouterLink> |
-    <RouterLink to="/job/results">Job results</RouterLink>
-  </div>
+  <MainNav />
   <RouterView />
 </template>
 
 <script>
+import MainNav from '@/components/navigation/MainNav.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    MainNav
+  }
 }
 </script>

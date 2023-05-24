@@ -1,9 +1,13 @@
 <template>
-  <h1 class="text-6xl font-bold">Home page</h1>
+  <Hero />
 </template>
 
 <script>
+import Hero from '@/components/job-search/Hero.vue'
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  components: {
+    Hero
+  }
 }
 </script>
