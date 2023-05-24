@@ -23,7 +23,6 @@ describe('SubNav', () => {
       renderSubNav(routeName)
 
       const jobCount = screen.getByText('1653')
-      console.log(jobCount)
       expect(jobCount).toBeInTheDocument()
     })
   })
@@ -33,7 +32,6 @@ describe('SubNav', () => {
       const routeName = 'Home'
       renderSubNav(routeName)
       const jobCount = screen.queryByText('1653')
-      console.log(jobCount)
       expect(jobCount).not.toBeInTheDocument()
     })
   })
