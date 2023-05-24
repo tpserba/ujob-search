@@ -9,7 +9,7 @@ const routes = [
     name: 'Home'
   },
   {
-    path: '/job/results',
+    path: '/jobs/results',
     component: JobResultsView,
     name: 'JobResults'
   }

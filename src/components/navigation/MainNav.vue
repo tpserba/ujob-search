@@ -5,8 +5,10 @@
         <RouterLink to="/" class="flex h-full items-center text-xl">Corp Careers</RouterLink>
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
-            <li class="ml-9 h-full first:ml-0" v-for="menuItem in menuItems" :key="menuItem">
-              <a href="" class="flex h-full items-center py-2.5">{{ menuItem }}</a>
+            <li class="ml-9 h-full first:ml-0" v-for="menuItem in menuItems" :key="menuItem.text">
+              <RouterLink :to="menuItem.url" class="flex h-full items-center py-2.5">{{
+                menuItem.text
+              }}</RouterLink>
             </li>
           </ul>
         </nav>
@@ -33,7 +35,32 @@ export default {
   },
   data() {
     return {
-      menuItems: ['Teams', 'Locations', 'Life at Corp', 'Students', 'Jobs'],
+      menuItems: [
+        {
+          text: 'Teams',
+          url: '/'
+        },
+        {
+          text: 'Location',
+          url: '/'
+        },
+        {
+          text: 'Life at Corp',
+          url: '/'
+        },
+        {
+          text: 'How we hire',
+          url: '/'
+        },
+        {
+          text: 'Students',
+          url: '/'
+        },
+        {
+          text: 'Jobs',
+          url: '/jobs/results'
+        }
+      ],
       isLoggedIn: false
     }
   },
