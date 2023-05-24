@@ -8,6 +8,13 @@ describe('SubNav', () => {
         name: 'JobsResult'
       }
       render(SubNav, {
+        // Needs to mock that the user is on the jobs results page
+        // since the value is no longer hard coded and stored in a property and is computed now
+        computed: {
+          onJobsResultsPage() {
+            return true
+          }
+        },
         global: {
           mocks: {
             // Replaces this.$route with our mock
@@ -18,8 +25,8 @@ describe('SubNav', () => {
           }
         }
       })
-      const jobCount = screen.queryByText('1653')
-      expect(jobCount).toBeInTheDocument
+      const jobCount = screen.getByText('1653')
+      expect(jobCount).toBeInTheDocument()
     })
   })
 

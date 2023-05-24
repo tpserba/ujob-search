@@ -13,8 +13,6 @@ describe('Headline', () => {
   })
   describe('Vitest playground', () => {
     it('Displays introductory action verb', () => {
-      // Replaces time related functions with mock functions
-
       render(Headline)
 
       const actionPhrase = screen.getByRole('heading', {

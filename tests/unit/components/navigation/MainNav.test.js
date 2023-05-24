@@ -3,10 +3,16 @@ import userEvent from '@testing-library/user-event'
 import MainNav from '@/components/navigation/MainNav.vue'
 import { RouterLinkStub } from '@vue/test-utils'
 
-describe('MainNavm', () => {
+describe('MainNav', () => {
   const renderMainNav = () => {
+    const $route = {
+      name: 'Home'
+    }
     render(MainNav, {
       global: {
+        mocks: {
+          $route
+        },
         stubs: {
           FontAwesomeIcon: true,
           RouterLink: RouterLinkStub
@@ -29,7 +35,14 @@ describe('MainNavm', () => {
     const navMenuTexts = navItems.map((item) => item.textContent)
     console.log(navMenuTexts)
 
-    expect(navMenuTexts).toEqual(['Teams', 'Locations', 'Life at Corp', 'Students', 'Jobs'])
+    expect(navMenuTexts).toEqual([
+      'Teams',
+      'Location',
+      'Life at Corp',
+      'How we hire',
+      'Students',
+      'Jobs'
+    ])
   })
 
   describe('When the user logs in', () => {
