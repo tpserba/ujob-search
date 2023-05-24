@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import Headline from '@/components/Headline.vue'
+import Headline from '@/components/job-search/Headline.vue'
 import { render, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 
