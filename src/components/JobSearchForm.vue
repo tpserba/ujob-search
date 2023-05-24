@@ -6,8 +6,7 @@
         <label class="absolute -top-10 left-0">Role</label>
         <input
           type="text"
-          :value="role"
-          @input="updateRole"
+          v-model="role"
           placeholder="Software engineer"
           class="w-full text-lg font-normal focus:outline-none"
         />
@@ -20,8 +19,7 @@
         <label class="absolute -top-10 left-0">Where?</label>
         <input
           type="text"
-          :value="location"
-          @input="location = $event.target.value"
+          v-model="location"
           placeholder="Los Angeles"
           class="w-full text-lg font-normal focus:outline-none"
         />
@@ -42,11 +40,6 @@ export default {
     return {
       role: '',
       location: ''
-    }
-  },
-  methods: {
-    updateRole(event) {
-      this.role = event.target.value
     }
   }
 }
