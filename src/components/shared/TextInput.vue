@@ -16,6 +16,7 @@ export default {
       required: true
     }
   },
+  emits: ['udpate:modelValue'],
   methods: {
     handleInput($event) {
       this.$emit('update:modelValue', $event.target.value)
