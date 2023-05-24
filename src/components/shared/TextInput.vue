@@ -14,6 +14,11 @@ export default {
     return {
       value: 'lorem'
     }
+  },
+  methods: {
+    handleInput($event) {
+      this.value = $event.target.value
+    }
   }
 }
 </script>
