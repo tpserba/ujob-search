@@ -1,5 +1,8 @@
 <template>
-  <form class="flex h-12 w-full items-center rounded-3xl border border-solid border-brand-grey-3">
+  <form
+    class="flex h-12 w-full items-center rounded-3xl border border-solid border-brand-grey-3"
+    @submit.prevet="searchForJobs"
+  >
     <FontAwesomeIcon :icon="['fas', 'search']" class="ml-4 mr-3" />
     <div class="flex h-full flex-1 flex-nowrap text-base font-light">
       <div class="relative flex h-full flex-1 items-center pr-3">
@@ -35,8 +38,14 @@ export default {
     }
   },
   methods: {
-    updateRole(payload) {
-      this.role = payload
+    searchForJobs() {
+      this.$router.push({
+        name: 'JobsResults',
+        query: {
+          role: this.role,
+          location: this.location
+        }
+      })
     }
   }
 }
