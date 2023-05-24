@@ -7,6 +7,7 @@
         <input
           type="text"
           :value="role"
+          @input="updateRole"
           placeholder="Software engineer"
           class="w-full text-lg font-normal focus:outline-none"
         />
@@ -20,6 +21,7 @@
         <input
           type="text"
           :value="location"
+          @input="location = $event.target.value"
           placeholder="Los Angeles"
           class="w-full text-lg font-normal focus:outline-none"
         />
@@ -40,6 +42,11 @@ export default {
     return {
       role: '',
       location: ''
+    }
+  },
+  methods: {
+    updateRole(event) {
+      this.role = event.target.value
     }
   }
 }
