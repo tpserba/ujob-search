@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'JobResultsView',
+  name: 'JobsResultsView',
   methods: {
     goToHome() {
       // Can use path or name, but name could be argued that it's less likely to change than a path
