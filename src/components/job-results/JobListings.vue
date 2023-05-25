@@ -1,7 +1,7 @@
 <template>
   <main class="flex-auto bg-brand-grey-2 p-8">
     <ol>
-      <JobListing v-for="job in jobs" :key="job.id" :job="job" />
+      <JobListing v-for="job in displayedJobs" :key="job.id" :job="job" />
     </ol>
   </main>
 </template>
@@ -18,6 +18,11 @@ export default {
   data() {
     return {
       jobs: []
+    }
+  },
+  computed: {
+    displayedJobs() {
+      return this.jobs.slice(0, 10)
     }
   },
   async mounted() {
