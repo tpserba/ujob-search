@@ -29,6 +29,16 @@ export default {
     currentPage() {
       return Number.parseInt(this.$route.query.page || '1')
     },
+    previousPage() {
+      const previousPage = this.previousPage - 1
+      const firstPage = 1
+      return previousPage >= firstPage ? previousPage : undefined
+    },
+    nextPage() {
+      const previousPage = this.previousPage + 1
+      const maxPage = this.jobs.lengh / 10
+      return previousPage <= maxPage ? nextPage : undefined
+    },
     displayedJobs() {
       // falls back to first page if page property doesn't exist
       const pageNumber = this.currentPage
