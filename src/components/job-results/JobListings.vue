@@ -14,8 +14,26 @@
               </div>
               <div><span>San Francisco, CA, USA</span></div>
             </div>
-          </div></RouterLink
-        >
+          </div>
+          <div class="px-8 py-4">
+            <div>
+              <h3 class="mb-2 mt-1">Qualifications</h3>
+              <div>
+                <ul class="list-disc pl-8">
+                  <li>Bachelor's degree or equivalent</li>
+                  <li>5 years or more in program management</li>
+                  <li>
+                    Experience analyzing data through querying database(e.g. SQL). Lorem ipsum lorem
+                    ipsum lorem ipsum
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-2 text-center">
+              <RouterLink to="/jobs/results/1" class="text-brand-blue-1">Expand</RouterLink>
+            </div>
+          </div>
+        </RouterLink>
       </li>
     </ol>
   </main>
