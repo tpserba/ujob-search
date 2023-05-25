@@ -14,7 +14,8 @@
             class="mx-3 text-sm font-semibold text-brand-blue-1"
             >Previous</RouterLink
           >
-
+          <!-- Aria role added to avoid tests failing. Anchor tags without href attribute make tests fail, so we explicitly put the role here, 
+            which ends up as attribute of the top element in the implementation.-->
           <RouterLink
             role="link"
             :to="{ name: 'JobsResults', query: { page: nextPage } }"

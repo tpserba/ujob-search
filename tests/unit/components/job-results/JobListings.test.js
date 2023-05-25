@@ -82,16 +82,47 @@ describe('JobListings', () => {
     })
 
     it('show next page link', async () => {
+      // Simulates backend response
       axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       const queryParams = { page: '1' }
       const $route = createRoute(queryParams)
       renderJobListings($route)
+      // Query to make sure to find multiple listitem elements, or elements fulfilling that role
+      // it verifies that the compo has had time to re render the joblistings based on the backend results
       await screen.findAllByRole('listitem')
       // If link is not present after refresh(after await) then test will fail
       const nextLink = screen.queryByRole('link', {
         name: /next/i
       })
       expect(nextLink).toBeInTheDocument()
+    })
+  })
+
+  describe('when user is on last page', () => {
+    it('does not show link to next page', async () => {
+      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
+      const queryParams = { page: '2' }
+      const $route = createRoute(queryParams)
+      renderJobListings($route)
+
+      await screen.findAllByRole('listitem')
+      const nextLink = screen.queryByRole('link', {
+        name: /next/i
+      })
+      expect(nextLink).not.toBeInTheDocument()
+    })
+
+    it('shows link to previous page', async () => {
+      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
+      const queryParams = { page: '2' }
+      const $route = createRoute(queryParams)
+      renderJobListings($route)
+
+      await screen.findAllByRole('listitem')
+      const previousLink = screen.queryByRole('link', {
+        name: /previous/i
+      })
+      expect(previousLink).toBeInTheDocument()
     })
   })
 })
