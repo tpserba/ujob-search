@@ -38,6 +38,9 @@ describe('JobListings', () => {
     const queryParams = { page: '1' }
     const $route = createRoute(queryParams)
     renderJobListings($route)
+    /* Uses 'find' because test ran faster than rendering, and 'get' verb caused error because there were no elements.
+    With await it makes sure the elements(if any) are in the page, and in that case
+    it can perform the test correctly */
     const jobListings = await screen.findAllByRole('listitem')
     expect(jobListings).toHaveLength(10)
   })
@@ -61,6 +64,34 @@ describe('JobListings', () => {
       renderJobListings($route)
 
       expect(screen.getByText('Page 3')).toBeInTheDocument()
+    })
+  })
+
+  describe('When user is on first page', () => {
+    it('does not show link to previous page', async () => {
+      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
+      const queryParams = { page: '1' }
+      const $route = createRoute(queryParams)
+      renderJobListings($route)
+      await screen.findAllByRole('listitem')
+      // If link is not present after refresh(after await) then test will fail
+      const previousLink = screen.queryByRole('link', {
+        name: /previous/i
+      })
+      expect(previousLink).not.toBeInTheDocument()
+    })
+
+    it('show next page link', async () => {
+      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
+      const queryParams = { page: '1' }
+      const $route = createRoute(queryParams)
+      renderJobListings($route)
+      await screen.findAllByRole('listitem')
+      // If link is not present after refresh(after await) then test will fail
+      const nextLink = screen.queryByRole('link', {
+        name: /next/i
+      })
+      expect(nextLink).toBeInTheDocument()
     })
   })
 })

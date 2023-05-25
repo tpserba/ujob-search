@@ -8,6 +8,7 @@
         <p class="flex-grow text-sm">Page {{ this.currentPage }}</p>
         <div class="flex items-center justify-center">
           <RouterLink
+            role="link"
             :to="{ name: 'JobsResults', query: { page: previousPage } }"
             v-if="previousPage"
             class="mx-3 text-sm font-semibold text-brand-blue-1"
@@ -15,6 +16,7 @@
           >
 
           <RouterLink
+            role="link"
             :to="{ name: 'JobsResults', query: { page: nextPage } }"
             v-if="nextPage"
             class="mx-3 text-sm font-semibold text-brand-blue-1"
@@ -51,7 +53,7 @@ export default {
     },
     nextPage() {
       const nextPage = this.currentPage + 1
-      const maxPage = this.jobs.length / 10
+      const maxPage = Math.ceil(this.jobs.length / 10)
       return nextPage <= maxPage ? nextPage : undefined
     },
     displayedJobs() {
