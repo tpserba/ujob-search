@@ -32,7 +32,6 @@
 <script>
 import axios from 'axios'
 import JobListing from '@/components/job-results/JobListing.vue'
-const url = 'http://localhost:3000/jobs'
 export default {
   name: 'JobListings',
   components: {
@@ -66,7 +65,10 @@ export default {
     }
   },
   async mounted() {
-    const response = await axios.get(url)
+    console.log(import.meta.env.VITE_APP_API_URL)
+    const baseURL = import.meta.env.VITE_APP_API_URL
+    console.log('this is the url ' + baseURL)
+    const response = await axios.get(`${baseURL}/jobs`)
     this.jobs = response.data
   }
 }
