@@ -31,9 +31,7 @@ describe('MainNav', () => {
     //render(MainNav)
     renderMainNav()
     const navItems = screen.getAllByRole('listitem')
-    console.log(navItems)
     const navMenuTexts = navItems.map((item) => item.textContent)
-    console.log(navMenuTexts)
 
     expect(navMenuTexts).toEqual([
       'Teams',

@@ -65,9 +65,7 @@ export default {
     }
   },
   async mounted() {
-    console.log(import.meta.env.VITE_APP_API_URL)
     const baseURL = import.meta.env.VITE_APP_API_URL
-    console.log('this is the url ' + baseURL)
     const response = await axios.get(`${baseURL}/jobs`)
     this.jobs = response.data
   }
