@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import MainNav from '@/components/navigation/MainNav.vue'
 import { RouterLinkStub } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
-import { useUserStore } from '../../../../src/stores/user'
+import { useUserStore } from '@/stores/user'
 
 describe('MainNav', () => {
   const renderMainNav = () => {

@@ -1,11 +1,8 @@
 import { render, screen } from '@testing-library/vue'
 import JobListings from '@/components/job-results/JobListings.vue'
-import axios from 'axios'
 import { RouterLinkStub } from '@vue/test-utils'
-
-// Finds axios library and replaces exports with vitest mock functions
-vi.mock('axios')
-
+import { createTestingPinia } from '@pinia/testing'
+import { useJobsStore } from '@/stores/jobs'
 describe('JobListings', () => {
   const createRoute = (queryParams = {}) => ({
     query: {
@@ -15,8 +12,10 @@ describe('JobListings', () => {
   })
 
   const renderJobListings = ($route) => {
+    const pinia = createTestingPinia()
     render(JobListings, {
       global: {
+        plugins: [pinia],
         mocks: {
           $route
         },
@@ -27,17 +26,18 @@ describe('JobListings', () => {
     })
   }
   it('fetches jobs', () => {
-    axios.get.mockResolvedValue({ data: [] })
     const $route = createRoute()
     renderJobListings($route)
-    expect(axios.get).toHaveBeenCalledWith('http://myfakeapi.com/jobs') // the call is what matters, it doesn't matter is response.data is empty array
+    const jobsStore = useJobsStore()
+    expect(jobsStore.FETCH_JOBS).toHaveBeenCalled() // the call is what matters, it doesn't matter is response.data is empty array
   })
 
   it('displays maximum of 10 jobs', async () => {
-    axios.get.mockResolvedValue({ data: Array(15).fill({}) })
     const queryParams = { page: '1' }
     const $route = createRoute(queryParams)
     renderJobListings($route)
+    const jobsStore = useJobsStore()
+    jobsStore.jobs = Array(15).fill({})
     /* Uses 'find' because test ran faster than rendering, and 'get' verb caused error because there were no elements.
     With await it makes sure the elements(if any) are in the page, and in that case
     it can perform the test correctly */
@@ -69,10 +69,11 @@ describe('JobListings', () => {
 
   describe('When user is on first page', () => {
     it('does not show link to previous page', async () => {
-      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       const queryParams = { page: '1' }
       const $route = createRoute(queryParams)
       renderJobListings($route)
+      const jobsStore = useJobsStore()
+      jobsStore.jobs = Array(15).fill({})
       await screen.findAllByRole('listitem')
       // If link is not present after refresh(after await) then test will fail
       const previousLink = screen.queryByRole('link', {
@@ -82,11 +83,11 @@ describe('JobListings', () => {
     })
 
     it('show next page link', async () => {
-      // Simulates backend response
-      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       const queryParams = { page: '1' }
       const $route = createRoute(queryParams)
       renderJobListings($route)
+      const jobsStore = useJobsStore()
+      jobsStore.jobs = Array(15).fill({})
       // Query to make sure to find multiple listitem elements, or elements fulfilling that role
       // it verifies that the compo has had time to re render the joblistings based on the backend results
       await screen.findAllByRole('listitem')
@@ -100,11 +101,11 @@ describe('JobListings', () => {
 
   describe('when user is on last page', () => {
     it('does not show link to next page', async () => {
-      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       const queryParams = { page: '2' }
       const $route = createRoute(queryParams)
       renderJobListings($route)
-
+      const jobsStore = useJobsStore()
+      jobsStore.jobs = Array(15).fill({})
       await screen.findAllByRole('listitem')
       const nextLink = screen.queryByRole('link', {
         name: /next/i
@@ -113,11 +114,11 @@ describe('JobListings', () => {
     })
 
     it('shows link to previous page', async () => {
-      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       const queryParams = { page: '2' }
       const $route = createRoute(queryParams)
       renderJobListings($route)
-
+      const jobsStore = useJobsStore()
+      jobsStore.jobs = Array(15).fill({})
       await screen.findAllByRole('listitem')
       const previousLink = screen.queryByRole('link', {
         name: /previous/i
