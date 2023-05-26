@@ -7,7 +7,10 @@
           <ActionButton text="Clear filter" type="secondary" />
         </div>
       </div>
-      <CollapsibleAccordion header="Job type"></CollapsibleAccordion>
+      <CollapsibleAccordion header="Degree"></CollapsibleAccordion>
+      <CollapsibleAccordion header="Job type"
+        ><p>Placeholder for job type accordion</p></CollapsibleAccordion
+      >
       <CollapsibleAccordion header="Organizations">
         <div class="mt-5">
           <fieldset>
