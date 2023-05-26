@@ -49,7 +49,6 @@ describe('MainNav', () => {
 
   describe('When the user logs in', () => {
     it('Displays user profile picture', async () => {
-      //render(MainNav)
       renderMainNav()
       const userStore = useUserStore()
       // Aria role is img
