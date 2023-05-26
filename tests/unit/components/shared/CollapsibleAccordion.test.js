@@ -26,4 +26,22 @@ describe('CollapsibleAccordion', () => {
     await userEvent.click(button)
     expect(screen.getByText('My nested child')).toBeInTheDocument()
   })
+
+  describe('when parent does not provide content for child', () => {
+    it('renders fallback content', async () => {
+      render(CollapsibleAccordion, {
+        global: {
+          stubs: {
+            FontAwesomeIcon: true
+          }
+        },
+        props: {
+          header: 'My category'
+        }
+      })
+      const button = screen.getByRole('button', { name: /my category/i })
+      await userEvent.click(button)
+      expect(screen.getByText('Fallback content')).toBeInTheDocument()
+    })
+  })
 })
