@@ -7,7 +7,8 @@
           <ActionButton text="Clear filter" type="secondary" />
         </div>
       </div>
-      <CollapsibleAccordion>
+      <CollapsibleAccordion header="Job type"></CollapsibleAccordion>
+      <CollapsibleAccordion header="Organizations">
         <div class="mt-5">
           <fieldset>
             <ul class="flex flex-row flex-wrap">
