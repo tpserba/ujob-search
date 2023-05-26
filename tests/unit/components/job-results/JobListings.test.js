@@ -30,7 +30,7 @@ describe('JobListings', () => {
     axios.get.mockResolvedValue({ data: [] })
     const $route = createRoute()
     renderJobListings($route)
-    expect(axios.get).toHaveBeenCalledWith('http://myfakeweb.com/jobs') // the call is what matters, it doesn't matter is response.data is empty array
+    expect(axios.get).toHaveBeenCalledWith('http://myfakeapi.com/jobs') // the call is what matters, it doesn't matter is response.data is empty array
   })
 
   it('displays maximum of 10 jobs', async () => {
