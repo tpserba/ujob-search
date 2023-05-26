@@ -1,17 +1,17 @@
 <template>
   <div class="flex w-full flex-row flex-nowrap">
-    <JobFilterSidebar />
+    <JobFiltersSidebar />
     <JobListings />
   </div>
 </template>
 
 <script>
-import JobFilterSidebar from '@/components/job-results/job-filter-sidebar/JobFilterSidebar.vue'
+import JobFiltersSidebar from '@/components/job-results/job-filter-sidebar/JobFiltersSidebar.vue'
 import JobListings from '@/components/job-results/JobListings.vue'
 export default {
   name: 'JobsResultsView',
   components: {
-    JobFilterSidebar,
+    JobFiltersSidebar,
     JobListings
   }
 }
