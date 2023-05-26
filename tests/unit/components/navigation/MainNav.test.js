@@ -3,10 +3,11 @@ import userEvent from '@testing-library/user-event'
 import MainNav from '@/components/navigation/MainNav.vue'
 import { RouterLinkStub } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
+import { useUserStore } from '../../../../src/stores/user'
 
 describe('MainNav', () => {
   const renderMainNav = () => {
-    const pinia = createTestingPinia({ stubActions: false })
+    const pinia = createTestingPinia()
     const $route = {
       name: 'Home'
     }
@@ -50,6 +51,7 @@ describe('MainNav', () => {
     it('Displays user profile picture', async () => {
       //render(MainNav)
       renderMainNav()
+      const userStore = useUserStore()
       // Aria role is img
       let profileImg = screen.queryByRole('img', {
         name: /user profile image/i
@@ -60,6 +62,7 @@ describe('MainNav', () => {
       const loginBtn = screen.getByRole('button', {
         name: /Sign in/i
       })
+      userStore.isLoggedIn = true
       await userEvent.click(loginBtn)
       profileImg = screen.getByRole('img', {
         name: /user profile image/i
