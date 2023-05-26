@@ -1,9 +1,30 @@
 <template>
-  <div>My Accordion</div>
+  <div class="border-b border-solid border-brand-grey-2 py-5">
+    <div class="flex cursor-pointer flex-wrap items-center justify-between" @click="open">
+      <h3 class="text-base font-semibold">Organizations</h3>
+      <FontAwesomeIcon :icon="caretIcon" />
+    </div>
+    <div v-if="isOpen" class="mt-5 w-full">Child</div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'CollapsibleAccordion'
+  name: 'CollapsibleAccordion',
+  data() {
+    return {
+      isOpen: false
+    }
+  },
+  computed: {
+    caretIcon() {
+      return this.isOpen ? ['fas', 'angle-up'] : ['fas', 'angle-down']
+    }
+  },
+  methods: {
+    open() {
+      this.isOpen = !this.isOpen
+    }
+  }
 }
 </script>
