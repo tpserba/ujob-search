@@ -3,21 +3,9 @@
     <div class="mt-5">
       <fieldset>
         <ul class="flex flex-row flex-wrap">
-          <li class="h-8 w-1/2">
-            <input id="VueTeam" type="checkbox" class="mr-3" />
-            <label for="VueTeam">VueTeam</label>
-          </li>
-          <li class="h-8 w-1/2">
-            <input id="Microsoft" type="checkbox" class="mr-3" />
-            <label for="Microsoft">Microsoft</label>
-          </li>
-          <li class="h-8 w-1/2">
-            <input id="Google" type="checkbox" class="mr-3" />
-            <label for="Google">Google</label>
-          </li>
-          <li class="h-8 w-1/2">
-            <input id="Lorem" type="checkbox" class="mr-3" />
-            <label for="Lorem">Lorem</label>
+          <li v-for="org in UNIQUE_ORGS" :key="org" class="h-8 w-1/2">
+            <input :id="org" type="checkbox" class="mr-3" />
+            <label :for="org">{{ org }}</label>
           </li>
         </ul>
       </fieldset>
