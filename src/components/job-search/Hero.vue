@@ -18,18 +18,18 @@
       </div>
     </section>
     <Spotlight class="flex flex-row justify-center pb-16">
-      <template #default="slotProps">
+      <template #default="{ img, title, description }">
         <RouterLink
           to="/jobs/results"
           class="mx-5 flex h-96 w-72 flex-col rounded-lg border bg-brand-grey-2"
         >
-          <img :src="slotProps.img" class="object-contain" />
+          <img :src="img" class="object-contain" />
           <div class="mt-3 h-48 px-6 py-4">
             <h3 class="text-lg font-medium">
-              {{ slotProps.title }}
+              {{ title }}
             </h3>
             <p class="mt-3 text-sm">
-              {{ slotProps.description }}
+              {{ description }}
             </p>
             <RouterLink to="/jobs/results" class="px-6 pb-4 text-sm text-brand-blue-1"
               >See jobs</RouterLink
