@@ -36,4 +36,12 @@ describe('actions', () => {
       expect(store.isLoggedIn).toBe(true)
     })
   })
+
+  describe('ADD_SELECTED_ORGS', () => {
+    it('updates organizations the user has chosen to filter jobs by', () => {
+      const store = useUserStore()
+      store.ADD_SELECTED_ORGS(['org1', 'org2'])
+      expect(store.selectedOrgs).toEqual(['org1', 'org2'])
+    })
+  })
 })
