@@ -14,6 +14,11 @@ describe('state', () => {
     const store = useUserStore()
     expect(store.isLoggedIn).toBe(false)
   })
+
+  it('stores orgs that the user would like to filter jobs by', () => {
+    const store = useUserStore()
+    expect(store.selectedOrgs).toEqual([])
+  })
 })
 
 describe('actions', () => {
