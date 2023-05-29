@@ -15,7 +15,7 @@
 <script>
 import ActionButton from '@/components/shared/ActionButton.vue'
 import CollapsibleAccordion from '@/components/shared/CollapsibleAccordion.vue'
-import JobFiltersSidebarOrganizations from '@/components/job-results/job-filter-sidebar/JobFiltersSidebarOrganizations.vue'
+import JobFiltersSidebarOrganizations from '@/components/job-results/job-filters-sidebar/JobFiltersSidebarOrganizations.vue'
 export default {
   name: 'JobFiltersSidebar',
   components: {
