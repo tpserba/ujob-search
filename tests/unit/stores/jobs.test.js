@@ -34,3 +34,29 @@ describe('actions', () => {
     })
   })
 })
+
+describe('getters', () => {
+  beforeEach(() => {
+    // Creates single global instance of pinia,
+    // setActivePinia registers it in our environment
+    setActivePinia(createPinia())
+  })
+  describe('UNIQUE_ORGS', () => {
+    it('finds unique organizations from list of jobs', () => {
+      const store = useJobsStore()
+      store.jobs = [
+        {
+          organization: 'google'
+        },
+        {
+          organization: 'amazon'
+        },
+        {
+          organization: 'google'
+        }
+      ]
+      const result = store.UNIQUE_ORGS
+      expect(result).toEqual(new Set(['google', 'amazon']))
+    })
+  })
+})
