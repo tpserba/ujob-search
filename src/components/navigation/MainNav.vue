@@ -40,7 +40,7 @@ export default {
       menuItems: [
         {
           text: 'Teams',
-          url: '/'
+          url: '/teamsview'
         },
         {
           text: 'Location',
