@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
+import { mapActions, mapState } from 'pinia'
+import { useUserStore, ADD_SELECTED_ORGS } from '@/stores/user'
 import { useJobsStore, UNIQUE_ORGS } from '@/stores/jobs'
 import CollapsibleAccordion from '@/components/shared/CollapsibleAccordion.vue'
 export default {
@@ -38,7 +39,11 @@ export default {
     ...mapState(useJobsStore, [UNIQUE_ORGS])
   },
   methods: {
-    selectOrg() {}
+    // Spreads actions so they become available with "this" keyword
+    ...mapActions(useUserStore, [ADD_SELECTED_ORGS]),
+    selectOrg() {
+      this.ADD_SELECTED_ORGS(this.selectedOrgs)
+    }
   }
 }
 </script>
