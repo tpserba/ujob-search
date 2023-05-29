@@ -4,6 +4,7 @@ export const FETCH_JOBS = 'FETCH_JOBS'
 export const UNIQUE_ORGS = 'UNIQUE_ORGS'
 import { useUserStore } from '@/stores/user'
 export const FILTERED_JOBS_BY_ORGS = 'FILTERED_JOBS_BY_ORGS'
+
 export const useJobsStore = defineStore('jobs', {
   state: () => ({
     jobs: []

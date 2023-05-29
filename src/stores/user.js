@@ -3,7 +3,8 @@ export const ADD_SELECTED_ORGS = 'ADD_SELECTED_ORGS'
 export const useUserStore = defineStore('user', {
   state: () => ({
     isLoggedIn: false,
-    selectedOrgs: []
+    selectedOrgs: [],
+    selectedJobTypes: []
   }),
   actions: {
     loginUser() {
