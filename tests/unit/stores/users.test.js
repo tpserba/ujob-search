@@ -50,5 +50,11 @@ describe('actions', () => {
     })
   })
 
-  describe('ADD_SELECTED_JOB_TYPES', () => {})
+  describe('ADD_SELECTED_JOB_TYPES', () => {
+    it('updates job types the user has chosen to filter jobs by', () => {
+      const store = useUserStore()
+      store.ADD_SELECTED_JOB_TYPES(['full-time', 'part-time'])
+      expect(store.selectedJobTypes).toEqual(['full-time', 'part-time'])
+    })
+  })
 })
