@@ -7,17 +7,21 @@ import Spotlight from '@/components/job-search/Spotlight.vue'
 vi.mock('axios')
 
 describe('Spotlight', () => {
-  it('prodives an image to parent component', async () => {
+  const mockSpotlightResponse = (spotlight = {}) => {
     axios.get.mockResolvedValue({
       data: [
         {
           id: 1,
           img: 'Some img',
           title: 'title',
-          description: 'desc'
+          description: 'desc',
+          ...spotlight
         }
       ]
     })
+  }
+  it('prodives an image to parent component', async () => {
+    mockSpotlightResponse({ img: 'someImg' })
     render(Spotlight, {
       slots: {
         // There's only 1 slot without name, so Vue automatically assigns default as name
@@ -26,21 +30,12 @@ describe('Spotlight', () => {
         </template>`
       }
     })
-    const text = await screen.findByText('Some img')
+    const text = await screen.findByText('someImg')
     expect(text).toBeInTheDocument()
   })
 
   it('prodives a title to parent component', async () => {
-    axios.get.mockResolvedValue({
-      data: [
-        {
-          id: 1,
-          img: 'Some img',
-          title: 'title',
-          description: 'desc'
-        }
-      ]
-    })
+    mockSpotlightResponse({ title: 'someTitle' })
     render(Spotlight, {
       slots: {
         // There's only 1 slot without name, so Vue automatically assigns default as name
@@ -49,21 +44,12 @@ describe('Spotlight', () => {
         </template>`
       }
     })
-    const text = await screen.findByText('title')
+    const text = await screen.findByText('someTitle')
     expect(text).toBeInTheDocument()
   })
 
   it('prodives a description to parent component', async () => {
-    axios.get.mockResolvedValue({
-      data: [
-        {
-          id: 1,
-          img: 'Some img',
-          title: 'title',
-          description: 'desc'
-        }
-      ]
-    })
+    mockSpotlightResponse()
     render(Spotlight, {
       slots: {
         // There's only 1 slot without name, so Vue automatically assigns default as name
