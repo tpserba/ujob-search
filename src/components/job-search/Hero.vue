@@ -44,7 +44,7 @@
 <script>
 import Headline from '@/components/job-search/Headline.vue'
 import JobSearchForm from '@/components/job-search/JobSearchForm.vue'
-import Spotlight from '@/components/job-search//Spotlight.vue'
+import Spotlight from '@/components/job-search/Spotlight.vue'
 export default {
   name: 'Hero',
   components: {
