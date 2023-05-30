@@ -44,8 +44,6 @@ export const useJobsStore = defineStore('jobs', {
     },
 
     [FILTERED_JOBS](state) {
-      const userStore = useUserStore()
-
       return state.jobs
         .filter((job) => this.INCLUDE_JOB_BY_ORG(job))
         .filter((job) => this.INCLUDE_JOB_BY_JOB_TYPE(job))
