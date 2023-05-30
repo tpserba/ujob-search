@@ -8,6 +8,9 @@ export const FILTERED_JOBS = 'FILTERED_JOBS'
 export const FILTERED_JOBS_BY_ORGS = 'FILTERED_JOBS_BY_ORGS'
 export const FILTERED_JOBS_BY_JOB_TYPES = 'FILTERED_JOBS_BY_JOB_TYPES'
 
+export const INCLUDE_JOB_BY_ORG = 'INCLUDE_JOB_BY_ORG'
+export const INCLUDE_JOB_BY_JOB_TYPE = 'INCLUDE_JOB_BY_JOB_TYPE'
+
 export const useJobsStore = defineStore('jobs', {
   state: () => ({
     jobs: []
@@ -28,6 +31,20 @@ export const useJobsStore = defineStore('jobs', {
       state.jobs.forEach((job) => uniqueJobTypes.add(job.jobType))
       return uniqueJobTypes
     },
+    [INCLUDE_JOB_BY_ORG]: () => (job) => {
+      const userStore = useUserStore()
+      if (userStore.selectedOrgs.length === 0) {
+        return true
+      }
+      return userStore.selectedOrgs.includes(job.organization)
+    },
+    [INCLUDE_JOB_BY_JOB_TYPE]: () => (job) => {
+      const userStore = useUserStore()
+      if (userStore.selectedJobTypes.length === 0) {
+        return true
+      }
+      return userStore.selectedJobsTypes.includes(job.jobType)
+    },
     [FILTERED_JOBS_BY_ORGS](state) {
       const userStore = useUserStore()
       if (userStore.selectedOrgs.length === 0) {
@@ -44,24 +61,13 @@ export const useJobsStore = defineStore('jobs', {
     },
     [FILTERED_JOBS](state) {
       const userStore = useUserStore()
-      const noSelectedOrgs = userStore.selectedOrgs.length === 0
-      const noSelectedJobTypes = userStore.selectedJobTypes.length === 0
+
       if (noSelectedOrgs && noSelectedJobTypes) {
         return state.jobs
       }
       return state.jobs
-        .filter((job) => {
-          if (noSelectedOrgs) {
-            return true
-          }
-          return userStore.selectedOrgs.includes(job.organization)
-        })
-        .filter((job) => {
-          if (noSelectedJobTypes) {
-            return true
-          }
-          return userStore.selectedJobTypes.includes(job.jobType)
-        })
+        .filter((job) => this.INCLUDE_JOB_BY_ORG(job))
+        .filter((job) => this.INCLUDE_JOB_BY_JOB_TYPE(job))
     }
   }
 })
