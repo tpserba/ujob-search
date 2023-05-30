@@ -7,6 +7,8 @@
           <ActionButton text="Clear filter" type="secondary" />
         </div>
       </div>
+      <CollapsibleAccordion header="Degree" />
+      <JobFiltersSidebarJobTypes />
       <JobFiltersSidebarOrganizations />
     </section>
   </div>
@@ -16,12 +18,15 @@
 import ActionButton from '@/components/shared/ActionButton.vue'
 import CollapsibleAccordion from '@/components/shared/CollapsibleAccordion.vue'
 import JobFiltersSidebarOrganizations from '@/components/job-results/job-filters-sidebar/JobFiltersSidebarOrganizations.vue'
+import JobFiltersSidebarJobTypes from '@/components/job-results/job-filters-sidebar/JobFiltersSidebarJobTypes.vue'
+
 export default {
   name: 'JobFiltersSidebar',
   components: {
     ActionButton,
     CollapsibleAccordion,
-    JobFiltersSidebarOrganizations
+    JobFiltersSidebarOrganizations,
+    JobFiltersSidebarJobTypes
   }
 }
 </script>
