@@ -1,7 +1,11 @@
-const axios = require('axios')
+const { ref, computed } = require('vue')
 
-const url = 'http://localhost:3000/jobs'
+let a = ref(1)
+let b = ref(2)
+let c = computed(() => a.value + b.value)
 
-axios.get(url).then((res) => {
-  console.log(res.data)
-})
+console.log(c.value)
+
+a.value = 10
+
+console.log(c.value)
