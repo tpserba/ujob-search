@@ -62,7 +62,7 @@ describe('JobFiltersSidebarJobTypes', () => {
       })
       await userEvent.click(fullTimeCheckbox)
 
-      expect($router.push).toHaveBeenNthCalledWith({ name: 'JobsResults' })
+      expect($router.push).toHaveBeenCalledWith({ name: 'JobsResults' })
     })
   })
 })
