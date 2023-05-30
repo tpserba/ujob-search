@@ -17,12 +17,19 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
   name: 'CollapsibleAccordion',
   setup() {
-    const header = 'Setup title'
+    const header = ref('Setup title')
+
+    const open = () => {
+      header.value = 'new title'
+    }
+
     return {
-      header
+      header,
+      open
     }
   }
   // props: {
