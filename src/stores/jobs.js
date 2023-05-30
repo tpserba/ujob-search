@@ -43,7 +43,7 @@ export const useJobsStore = defineStore('jobs', {
       if (userStore.selectedJobTypes.length === 0) {
         return true
       }
-      return userStore.selectedJobsTypes.includes(job.jobType)
+      return userStore.selectedJobTypes.includes(job.jobType)
     },
     [FILTERED_JOBS_BY_ORGS](state) {
       const userStore = useUserStore()
@@ -62,9 +62,6 @@ export const useJobsStore = defineStore('jobs', {
     [FILTERED_JOBS](state) {
       const userStore = useUserStore()
 
-      if (noSelectedOrgs && noSelectedJobTypes) {
-        return state.jobs
-      }
       return state.jobs
         .filter((job) => this.INCLUDE_JOB_BY_ORG(job))
         .filter((job) => this.INCLUDE_JOB_BY_JOB_TYPE(job))
