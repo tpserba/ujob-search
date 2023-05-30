@@ -34,13 +34,6 @@ export default {
       buttonClass
     }
   }
-  // computed: {
-  //   buttonClass() {
-  //     return {
-  //       [this.type]: true
-  //     }
-  //   }
-  // }
 }
 </script>
 
