@@ -45,7 +45,7 @@ export const useJobsStore = defineStore('jobs', {
     [FILTERED_JOBS](state) {
       const userStore = useUserStore()
       const noSelectedOrgs = userStore.selectedOrgs.length === 0
-      const noSelectedJobTypes = userStore.selectedJobTypes === 0
+      const noSelectedJobTypes = userStore.selectedJobTypes.length === 0
       if (noSelectedOrgs && noSelectedJobTypes) {
         return state.jobs
       }
