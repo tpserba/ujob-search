@@ -22,14 +22,16 @@ export default {
   name: 'CollapsibleAccordion',
   setup() {
     const header = ref('Setup title')
+    const isOpen = ref(false)
 
     const open = () => {
-      header.value = 'new title'
+      isOpen.value = !isOpen.value
     }
 
     return {
       header,
-      open
+      open,
+      isOpen
     }
   }
   // props: {
