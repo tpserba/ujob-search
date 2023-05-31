@@ -22,7 +22,6 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { mapActions, mapState } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useUserStore, ADD_SELECTED_JOB_TYPES } from '@/stores/user'
 import { useJobsStore } from '@/stores/jobs'
@@ -34,6 +33,6 @@ const userStore = useUserStore()
 const router = useRouter()
 const selectJobType = () => {
   userStore.ADD_SELECTED_JOB_TYPES(selectedJobTypes.value)
-  router.push({ name: 'JobsResult' })
+  router.push({ name: 'JobsResults' })
 }
 </script>
