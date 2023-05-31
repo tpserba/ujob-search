@@ -12,15 +12,21 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
+import { computed } from 'vue'
+import {useRoute} from 'vue-router' 
 import { useJobsStore, FILTERED_JOBS } from '@/stores/jobs'
-export default {
-  name: 'SubNav',
-  computed: {
-    ...mapState(useJobsStore, [FILTERED_JOBS]),
-    onJobsResultsPage() {
-      return this.$route.name === 'JobsResults'
-    }
-  }
-}
+// Declares a reactive route object 
+const route = useRoute();
+const onJobsResultsPage = computed(()=> {
+
+})
+// export default {
+//   name: 'SubNav',
+//   computed: {
+//     ...mapState(useJobsStore, [FILTERED_JOBS]),
+//     onJobsResultsPage() {
+//       return this.$route.name === 'JobsResults'
+//     }
+//   }
+// }
 </script>
