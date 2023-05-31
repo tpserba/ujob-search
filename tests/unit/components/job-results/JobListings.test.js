@@ -11,6 +11,9 @@ vi.mock('vue-router')
 describe('JobListings', () => {
   const renderJobListings = () => {
     const pinia = createTestingPinia()
+    const jobsStore = useJobsStore()
+    jobsStore.FILTERED_JOBS = Array(15).fill({})
+
     render(JobListings, {
       global: {
         plugins: [pinia],
@@ -19,19 +22,20 @@ describe('JobListings', () => {
         }
       }
     })
+
+    return { jobsStore }
   }
   it('fetches jobs', () => {
     useRoute.mockReturnValue({ query: {} })
-    renderJobListings()
-    const jobsStore = useJobsStore()
+    const { jobsStore } = renderJobListings()
+
     expect(jobsStore.FETCH_JOBS).toHaveBeenCalled() // the call is what matters, it doesn't matter is response.data is empty array
   })
 
   it('displays maximum of 10 jobs', async () => {
     useRoute.mockReturnValue({ query: { page: '1' } })
-    renderJobListings()
-    const jobsStore = useJobsStore()
-    jobsStore.jobs = Array(15).fill({})
+    const { jobsStore } = renderJobListings()
+    jobsStore.FILTERED_JOBS = Array(15).fill({})
     /* Uses 'find' because test ran faster than rendering, and 'get' verb caused error because there were no elements.
     With await it makes sure the elements(if any) are in the page, and in that case
     it can perform the test correctly */
@@ -62,9 +66,8 @@ describe('JobListings', () => {
   describe('When user is on first page', () => {
     it('does not show link to previous page', async () => {
       useRoute.mockReturnValue({ query: { page: '1' } })
-      renderJobListings()
-      const jobsStore = useJobsStore()
-      jobsStore.jobs = Array(15).fill({})
+      const { jobsStore } = renderJobListings()
+      jobsStore.FILTERED_JOBS = Array(15).fill({})
       await screen.findAllByRole('listitem')
       // If link is not present after refresh(after await) then test will fail
       const previousLink = screen.queryByRole('link', {
@@ -75,9 +78,8 @@ describe('JobListings', () => {
 
     it('show next page link', async () => {
       useRoute.mockReturnValue({ query: { page: '1' } })
-      renderJobListings()
-      const jobsStore = useJobsStore()
-      jobsStore.jobs = Array(15).fill({})
+      const { jobsStore } = renderJobListings()
+      jobsStore.FILTERED_JOBS = Array(15).fill({})
       // Query to make sure to find multiple listitem elements, or elements fulfilling that role
       // it verifies that the compo has had time to re render the joblistings based on the backend results
       await screen.findAllByRole('listitem')
@@ -92,9 +94,8 @@ describe('JobListings', () => {
   describe('when user is on last page', () => {
     it('does not show link to next page', async () => {
       useRoute.mockReturnValue({ query: { page: '2' } })
-      renderJobListings()
-      const jobsStore = useJobsStore()
-      jobsStore.jobs = Array(15).fill({})
+      const { jobsStore } = renderJobListings()
+      jobsStore.FILTERED_JOBS = Array(15).fill({})
       await screen.findAllByRole('listitem')
       const nextLink = screen.queryByRole('link', {
         name: /next/i
@@ -104,9 +105,8 @@ describe('JobListings', () => {
 
     it('shows link to previous page', async () => {
       useRoute.mockReturnValue({ query: { page: '2' } })
-      renderJobListings()
-      const jobsStore = useJobsStore()
-      jobsStore.jobs = Array(15).fill({})
+      const { jobsStore } = renderJobListings()
+      jobsStore.FILTERED_JOBS = Array(15).fill({})
       await screen.findAllByRole('listitem')
       const previousLink = screen.queryByRole('link', {
         name: /previous/i
