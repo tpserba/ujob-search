@@ -11,22 +11,15 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue'
-import {useRoute} from 'vue-router' 
-import { useJobsStore, FILTERED_JOBS } from '@/stores/jobs'
-// Declares a reactive route object 
-const route = useRoute();
-const onJobsResultsPage = computed(()=> {
-
+<script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useJobsStore } from '@/stores/jobs'
+// Declares a reactive route object
+const route = useRoute()
+const onJobsResultsPage = computed(() => {
+  return route.name === 'JobsResults'
 })
-// export default {
-//   name: 'SubNav',
-//   computed: {
-//     ...mapState(useJobsStore, [FILTERED_JOBS]),
-//     onJobsResultsPage() {
-//       return this.$route.name === 'JobsResults'
-//     }
-//   }
-// }
+const jobsStore = useJobsStore()
+const FILTERED_JOBS = computed(() => jobsStore.FILTERED_JOBS)
 </script>
