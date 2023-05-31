@@ -9,12 +9,12 @@
       </div>
       <CollapsibleAccordion header="Degree" />
       <JobFiltersSidebarCheckboxGroup
-        header="Job Typesss"
+        header="Job Types"
         :uniqueValues="UNIQUE_JOB_TYPES"
         :action="userStore.ADD_SELECTED_JOB_TYPES"
       />
       <JobFiltersSidebarCheckboxGroup
-        header="Orgss"
+        header="Organizations"
         :uniqueValues="UNIQUE_ORGS"
         :action="userStore.ADD_SELECTED_ORGS"
       />
