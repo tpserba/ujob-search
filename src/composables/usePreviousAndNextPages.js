@@ -10,7 +10,7 @@ const usePreviousAndNextPages = (currentPage, maxPage) => {
   const nextPage = computed(() => {
     const nextPage = currentPage.value + 1
 
-    return nextPage <= maxPage ? nextPage : undefined
+    return nextPage <= maxPage.value ? nextPage : undefined
   })
   return { previousPage, nextPage }
 }
