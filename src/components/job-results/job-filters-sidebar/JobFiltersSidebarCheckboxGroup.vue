@@ -12,7 +12,7 @@
               type="checkbox"
               class="mr-3"
             />
-            <label :for="jobType">{{ jobType }}</label>
+            <label :for="value">{{ value }}</label>
           </li>
         </ul>
       </fieldset>
