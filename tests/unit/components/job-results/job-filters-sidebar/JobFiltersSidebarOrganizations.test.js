@@ -5,25 +5,23 @@ import JobFiltersSidebarOrganizations from '@/components/job-results/job-filters
 import { useUserStore } from '@/stores/user'
 import { useJobsStore } from '@/stores/jobs'
 import { vi } from 'vitest'
+import { useRouter } from 'vue-router'
 
+vi.mock('vue-router')
 describe('JobFiltersSidebarOrganizations', () => {
   const renderJobFiltersSidebarOrganizations = () => {
     const pinia = createTestingPinia()
     const jobsStore = useJobsStore()
     const userStore = useUserStore()
-    const $router = { push: vi.fn() }
     render(JobFiltersSidebarOrganizations, {
       global: {
-        mocks: {
-          $router
-        },
         plugins: [pinia],
         stubs: {
           FontAwesomeIcon: true
         }
       }
     })
-    return { jobsStore, userStore, $router }
+    return { jobsStore, userStore }
   }
   it('renders a unique list of organizations from jobs', async () => {
     const { jobsStore } = renderJobFiltersSidebarOrganizations()
@@ -38,9 +36,9 @@ describe('JobFiltersSidebarOrganizations', () => {
 
   describe('when user clicks checkbox', () => {
     it('communicates that user has selected checkbox for organization', async () => {
+      useRouter.mockReturnValue({ push: vi.fn() })
       const { jobsStore, userStore } = renderJobFiltersSidebarOrganizations()
       jobsStore.UNIQUE_ORGS = new Set(['google', 'amazon'])
-
       const button = screen.getByRole('button', { name: /organizations/i })
       await userEvent.click(button)
       const googleCheckbox = screen.getByRole('checkbox', {
@@ -52,9 +50,10 @@ describe('JobFiltersSidebarOrganizations', () => {
     })
 
     it('navigates user to JobsResults page to see fresh batch of filtered jobs', async () => {
-      const { jobsStore, $router } = renderJobFiltersSidebarOrganizations()
+      const push = vi.fn()
+      useRouter.mockReturnValue({ push })
+      const { jobsStore } = renderJobFiltersSidebarOrganizations()
       jobsStore.UNIQUE_ORGS = new Set(['google'])
-
       const button = screen.getByRole('button', { name: /organizations/i })
       await userEvent.click(button)
       const googleCheckbox = screen.getByRole('checkbox', {
@@ -62,7 +61,7 @@ describe('JobFiltersSidebarOrganizations', () => {
       })
       await userEvent.click(googleCheckbox)
 
-      expect($router.push).toHaveBeenCalledWith({ name: 'JobsResults' })
+      expect(push).toHaveBeenCalledWith({ name: 'JobsResults' })
     })
   })
 })
